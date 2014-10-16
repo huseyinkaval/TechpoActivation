@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.creamobile.techpo"
+        version="0.1.1">
+    <name>TechpoActivation</name>
+    <license>Apache 2.0</license>
+    <author>Creamobile</author>
+    <description>techpoactivation plugin</description>
+    <keywords>techpoactivation</keywords>
+    
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>    
+
+    <js-module src="www/camera.js" name="FCamera">
+        <clobbers target="FCamera" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="FCamera">
+                <param name="android-package" value="com.foregroundcameraplugin.ForegroundCameraLauncher"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity
+				android:name="com.creamobile.kaskomobil.CameraActivity"
+				android:label="ArtiGaranti" 
+				android:screenOrientation="landscape">
+			</activity>
+        </config-file>
+
+        <source-file src="src/android/CameraActivity.java" target-dir="src/com/creamobile/kaskomobil" />
+        <source-file src="src/android/VerticalProgressBar.java" target-dir="src/com/creamobile/kaskomobil" />
+        <source-file src="src/android/ForegroundCameraLauncher.java" target-dir="src/com/foregroundcameraplugin" />
+        <source-file src="src/android/ForegroundCameraPreview.java" target-dir="src/com/foregroundcameraplugin" />
+        <source-file src="src/android/foregroundcameraplugin.xml" target-dir="res/layout" />
+		<source-file src="src/android/logofg.png" target-dir="res/drawable" />
+
+      
+     </platform>
+     
+          
+</plugin>
